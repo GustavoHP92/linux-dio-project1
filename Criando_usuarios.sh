@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#Script para criar usuários e grupos e atribuir permissões a cada um deles. 
+
+senha=Minhasenha
+grupoAdm=GRP_ADM
+grupoVen=GRP_VEN
+grupoSec=GRP_SEC
+
 echo "Criando os diretórios"
 
 mkdir /publico
@@ -9,28 +16,28 @@ mkdir /sec
 
 echo "Criando grupos de usuários..."
 
-groupadd GRP_ADM
-groupadd GRP_VEN
-groupadd GRP_SEC
+groupadd $grupoAdm
+groupadd $grupoVen
+groupadd $grupoSec
 
 echo "Criando usuários..."
 
-useradd carlos -m -s /bin/bash -p Senha789 -G GRP_ADM
-useradd maria -m -s /bin/bash -p Senha789 -G GRP_ADM
-useradd joao -m -s /bin/bash -p Senha789 -G GRP_ADM
-useradd debora -m -s /bin/bash -p Senha789 -G GRP_VEN
-useradd sebastiana -m -s /bin/bash -p Senha789 -G GRP_VEN
-useradd roberto -m -s /bin/bash -p Senha789 -G GRP_VEN
-useradd josefina -m -s /bin/bash -p Senha789 -G GRP_SEC
-useradd amanda -m -s /bin/bash -p Senha789 -G GRP_SEC
-useradd rogerio -m -s /bin/bash -p Senha789 -G GRP_SEC
+useradd carlos -m -s /bin/bash -p $senha -G $grupoAdm
+useradd maria -m -s /bin/bash -p $senha -G $grupoAdm
+useradd joao -m -s /bin/bash -p $senha -G $grupoAdm
+useradd debora -m -s /bin/bash -p $senha -G $grupoVen
+useradd sebastiana -m -s /bin/bash -p $senha -G $grupoVen
+useradd roberto -m -s /bin/bash -p $senha -G $grupoVen
+useradd josefina -m -s /bin/bash -p $senha -G $grupoSec
+useradd amanda -m -s /bin/bash -p $senha -G $grupoSec
+useradd rogerio -m -s /bin/bash -p $senha -G $grupoSec
 
 
 echo "Permissão dos diretórios...."
 
-chown root:GRP_ADM /adm
-chown root:GRP_VEN /ven
-chown root:GRP_SEC /sec
+chown root:$grupoAdm /adm
+chown root:$grupoVen /ven
+chown root:$grupoSec /sec
 
 chmod 770 /adm
 chmod 770 /ven
